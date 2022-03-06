@@ -25,24 +25,6 @@
                     <vmd-input label="Search here" />
                 </div>
                 <ul class="navbar-nav justify-content-end">
-                    <li class="nav-item d-flex align-items-center">
-                        <router-link
-                            :to="{ name: 'SignIn' }"
-                            class="px-0 nav-link font-weight-bold lh-1"
-                            :class="textWhite ? textWhite : 'text-body'"
-                        >
-                            <i
-                                class="material-icons"
-                                :class="
-                                    this.$store.state.isRTL
-                                        ? 'ms-sm-2'
-                                        : 'me-sm-1'
-                                "
-                            >
-                                account_circle
-                            </i>
-                        </router-link>
-                    </li>
                     <li
                         class="nav-item d-xl-none ps-3 d-flex align-items-center"
                     >
@@ -59,18 +41,89 @@
                             </div>
                         </a>
                     </li>
-                    <li class="px-3 nav-item d-flex align-items-center">
+                    <li
+                        class="nav-item dropdown d-flex align-items-center"
+                        :class="this.$store.state.isRTL ? 'ps-2' : 'pe-2'"
+                    >
                         <a
+                            href="#"
                             class="p-0 nav-link lh-1"
-                            @click="toggleConfigurator"
-                            :class="textWhite ? textWhite : 'text-body'"
+                            :class="[
+                                textWhite ? textWhite : 'text-body',
+                                showUser ? 'show' : '',
+                            ]"
+                            id="dropdownMenuButton"
+                            data-bs-toggle="dropdown"
+                            aria-expanded="false"
+                            @click="showUser = !showUser"
                         >
-                            <i
-                                class="material-icons fixed-plugin-button-nav cursor-pointer"
-                            >
-                                settings
+                            <i class="material-icons cursor-pointer">
+                                account_circle
                             </i>
                         </a>
+                        <ul
+                            class="px-2 py-3 dropdown-menu dropdown-menu-end me-sm-n4"
+                            :class="showUser ? 'show' : ''"
+                            aria-labelledby="dropdownMenuButton"
+                        >
+                            <li class="mb-2">
+                                <a
+                                    class="dropdown-item border-radius-md"
+                                    href="/profile"
+                                >
+                                    <div class="py-1 d-flex">
+                                        <div
+                                            class="my-auto avatar avatar-sm bg-gradient-secondary me-3"
+                                        >
+                                            <i
+                                                class="material-icons fixed-plugin-button-nav cursor-pointer"
+                                            >
+                                                person
+                                            </i>
+                                        </div>
+                                        <div
+                                            class="d-flex flex-column justify-content-center"
+                                        >
+                                            <h6
+                                                class="mb-1 text-sm font-weight-normal"
+                                            >
+                                                <span class="font-weight-bold"
+                                                    >Profile</span
+                                                >
+                                            </h6>
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a
+                                    class="dropdown-item border-radius-md"
+                                    @click="toggleConfigurator"
+                                    :class="textWhite ? textWhite : 'text-body'"
+                                >
+                                    <div class="py-1 d-flex">
+                                        <div
+                                            class="my-auto avatar avatar-sm bg-gradient-secondary me-3"
+                                        >
+                                            <i
+                                                class="material-icons fixed-plugin-button-nav cursor-pointer"
+                                            >
+                                                settings
+                                            </i>
+                                        </div>
+                                        <div
+                                            class="d-flex flex-column justify-content-center"
+                                        >
+                                            <h6
+                                                class="mb-1 text-sm font-weight-normal"
+                                            >
+                                                Settings
+                                            </h6>
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+                        </ul>
                     </li>
                     <li
                         class="nav-item dropdown d-flex align-items-center"
@@ -250,6 +303,7 @@ export default {
     data() {
         return {
             showMenu: false,
+            showUser: false,
         };
     },
     props: ["minNav", "textWhite"],

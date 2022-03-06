@@ -8,7 +8,7 @@
                 : 'fixed-start ms-3'
         } ${this.$store.state.sidebarType}`"
     >
-        <div class="sidenav-header">
+        <div class="sidenav-header text-center">
             <i
                 class="top-0 p-3 cursor-pointer fas fa-times text-secondary opacity-5 position-absolute end-0 d-none d-xl-none"
                 aria-hidden="true"

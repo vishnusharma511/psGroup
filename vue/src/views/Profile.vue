@@ -13,7 +13,7 @@
                 <div class="col-auto">
                     <div class="avatar avatar-xl position-relative">
                         <img
-                            src="@/assets/img/bruce-mars.jpg"
+                            :src="authUserAvatar"
                             alt="profile_image"
                             class="shadow-sm w-100 border-radius-lg"
                         />
@@ -21,9 +21,9 @@
                 </div>
                 <div class="col-auto my-auto">
                     <div class="h-100">
-                        <h5 class="mb-1">Richard Davis</h5>
+                        <h5 class="mb-1">{{ authUserName }}</h5>
                         <p class="mb-0 font-weight-normal text-sm">
-                            CEO / Co-Founder
+                            {{ authUserEmail }}
                         </p>
                     </div>
                 </div>
@@ -296,7 +296,7 @@
                                         <strong class="text-dark"
                                             >Full Name:</strong
                                         >
-                                        &nbsp; Alec M. Thompson
+                                        &nbsp; {{ authUserName }}
                                     </li>
                                     <li
                                         class="text-sm border-0 list-group-item ps-0"
@@ -304,7 +304,7 @@
                                         <strong class="text-dark"
                                             >Mobile:</strong
                                         >
-                                        &nbsp; (44) 123 1234 123
+                                        &nbsp; {{ authUserMobileNo }}
                                     </li>
                                     <li
                                         class="text-sm border-0 list-group-item ps-0"
@@ -312,7 +312,7 @@
                                         <strong class="text-dark"
                                             >Email:</strong
                                         >
-                                        &nbsp; alecthompson@mail.com
+                                        &nbsp; {{ authUserEmail }}
                                     </li>
                                     <li
                                         class="pb-0 border-0 list-group-item ps-0"
@@ -437,6 +437,7 @@ import team4 from "@/assets/img/team-4.jpg";
 
 import setNavPills from "@/assets/js/nav-pills.js";
 import setTooltip from "@/assets/js/tooltip.js";
+import store from "../store";
 
 export default {
     name: "profile-overview",
@@ -455,6 +456,10 @@ export default {
             team4,
             img2,
             img3,
+            authUserName: store.state.user.data.name,
+            authUserEmail: store.state.user.data.email,
+            authUserMobileNo: store.state.user.data.mobile,
+            authUserAvatar: store.state.user.data.avatar,
         };
     },
     components: {

@@ -16,6 +16,15 @@ export default createStore({
         showFooter: true,
         showMain: true,
         isDarkMode: false,
+        user: {
+            data: {
+                name: "Vishnu Sharma",
+                email: "vishnu.sharma@gmail.com",
+                mobile: "+91 8934998410",
+                avatar: require("@/assets/img/bruce-mars.jpg"),
+            },
+            token: "sdgf35fhg68765343242fy",
+        },
     },
     mutations: {
         toggleConfigurator(state) {
